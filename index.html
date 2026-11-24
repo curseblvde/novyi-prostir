@@ -445,43 +445,84 @@
             </div>
         </section>
 
-        <!-- 7. СЕКЦІЯ КОНСУЛЬТАЦІЇ -->
+<!-- 7. СЕКЦІЯ КОНСУЛЬТАЦІЇ (ЛР №9: Адаптивна форма + клієнтська валідація) -->
         <section class="py-12 md:py-16 lg:py-20 bg-[#141414] text-white" id="consultation" aria-labelledby="consultation-heading">
             <div class="max-w-[1160px] mx-auto px-4 sm:px-6">
                 <h2 id="consultation-heading" class="font-['Raleway',sans-serif] text-xl sm:text-2xl md:text-[28px] font-bold text-center mb-2">
                     Отримати безкоштовну консультацію архітектора
                 </h2>
-                <p class="text-xs text-zinc-400 text-center mb-8">Обговоримо ваш об'єкт, терміни реалізації та відповімо на всі питання.</p>
+                <p class="text-xs text-zinc-400 text-center mb-8">
+                    Обговоримо ваш об'єкт, терміни реалізації та відповімо на всі питання.
+                </p>
 
-                <form class="max-w-[480px] mx-auto bg-[#1c1c1e] border border-[#333338] p-5 sm:p-8 rounded-xl flex flex-col gap-4" action="#" method="post">
+                <!-- novalidate вимикає стандартні підказки браузера, щоб працювала наша JS-валідація -->
+                <form id="feedbackForm" novalidate class="max-w-[640px] mx-auto bg-[#1c1c1e] border border-[#333338] p-5 sm:p-8 rounded-xl flex flex-col gap-5" action="#" method="post">
+                    
+                    <!-- Поле 1: Ім'я -->
                     <div>
-                        <label for="client-name" class="block text-xs font-semibold mb-1.5">Ім'я <span class="text-[#c85a28]" aria-hidden="true">*</span></label>
-                        <input type="text" id="client-name" name="name" placeholder="Сергій" required class="w-full px-3.5 py-2.5 bg-[#242427] border border-[#333338] rounded-md text-sm text-white focus:outline-none focus:ring-2 focus:ring-[#c85a28]">
+                        <label for="username" class="block text-xs font-semibold mb-1.5">
+                            Ім'я <span class="text-[#c85a28]" aria-hidden="true">*</span>
+                        </label>
+                        <input type="text" id="username" name="username" placeholder="Сергій" autocomplete="name" aria-describedby="usernameError" aria-invalid="false"
+                               class="w-full min-h-[44px] px-3.5 py-2.5 bg-[#242427] border border-[#333338] rounded-md text-sm text-white placeholder-zinc-500 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c85a28]">
+                        <p id="usernameError" class="hidden text-xs text-red-400 mt-1.5" role="alert"></p>
                     </div>
 
+                    <!-- Поля 2 і 3 в 2 колонки від md: (Email + Телефон) -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label for="email" class="block text-xs font-semibold mb-1.5">
+                                Електронна пошта <span class="text-[#c85a28]" aria-hidden="true">*</span>
+                            </label>
+                            <input type="email" id="email" name="email" placeholder="example@gmail.com" autocomplete="email" aria-describedby="emailError" aria-invalid="false"
+                                   class="w-full min-h-[44px] px-3.5 py-2.5 bg-[#242427] border border-[#333338] rounded-md text-sm text-white placeholder-zinc-500 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c85a28]">
+                            <p id="emailError" class="hidden text-xs text-red-400 mt-1.5" role="alert"></p>
+                        </div>
+
+                        <div>
+                            <label for="phone" class="block text-xs font-semibold mb-1.5">
+                                Номер телефону <span class="text-[#c85a28]" aria-hidden="true">*</span>
+                            </label>
+                            <input type="tel" id="phone" name="phone" placeholder="+380971234567" autocomplete="tel" aria-describedby="phoneHint phoneError" aria-invalid="false"
+                                   class="w-full min-h-[44px] px-3.5 py-2.5 bg-[#242427] border border-[#333338] rounded-md text-sm text-white placeholder-zinc-500 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c85a28]">
+                            <span id="phoneHint" class="block text-[10px] text-zinc-400 mt-1">Формат: +380XXXXXXXXX (без пробілів)</span>
+                            <p id="phoneError" class="hidden text-xs text-red-400 mt-1" role="alert"></p>
+                        </div>
+                    </div>
+
+                    <!-- Поле 4: Повідомлення -->
                     <div>
-                        <label for="client-phone" class="block text-xs font-semibold mb-1.5">Телефон <span class="text-[#c85a28]" aria-hidden="true">*</span></label>
-                        <input type="tel" id="client-phone" name="phone" placeholder="+380 (97) 123-45-67" required aria-describedby="phone-hint" class="w-full px-3.5 py-2.5 bg-[#242427] border border-[#333338] rounded-md text-sm text-white focus:outline-none focus:ring-2 focus:ring-[#c85a28]">
-                        <span id="phone-hint" class="inline-block text-[10px] text-zinc-400 bg-[#242427] px-1.5 py-0.5 rounded mt-1.5">Формат: +380 XX XXX XX XX</span>
+                        <div class="flex items-center justify-between mb-1.5">
+                            <label for="message" class="block text-xs font-semibold">
+                                Ваше повідомлення <span class="text-[#c85a28]" aria-hidden="true">*</span>
+                            </label>
+                            <span id="messageCounter" class="text-[11px] text-zinc-400">0 / 500 символів</span>
+                        </div>
+                        <textarea id="message" name="message" rows="4" maxlength="500" placeholder="Розкажіть коротко про ваш об'єкт, площу та побажання..." aria-describedby="messageError" aria-invalid="false"
+                                  class="w-full px-3.5 py-2.5 bg-[#242427] border border-[#333338] rounded-md text-sm text-white placeholder-zinc-500 transition-colors resize-y focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c85a28]"></textarea>
+                        <p id="messageError" class="hidden text-xs text-red-400 mt-1.5" role="alert"></p>
                     </div>
 
+                    <!-- Поле 5: Чекбокс згоди -->
                     <div>
-                        <label for="client-email" class="block text-xs font-semibold mb-1.5">Email (опціонально)</label>
-                        <input type="email" id="client-email" name="email" placeholder="name@example.com" class="w-full px-3.5 py-2.5 bg-[#242427] border border-[#333338] rounded-md text-sm text-white focus:outline-none focus:ring-2 focus:ring-[#c85a28]">
+                        <div class="flex items-start gap-2.5 text-xs text-zinc-300">
+                            <input type="checkbox" id="agreement" name="agreement" aria-describedby="agreementError" aria-invalid="false"
+                                   class="w-4 h-4 mt-0.5 shrink-0 accent-[#c85a28] rounded cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#c85a28]">
+                            <label for="agreement" class="cursor-pointer select-none">
+                                Я даю згоду на обробку моїх персональних даних згідно з політикою конфіденційності <span class="text-[#c85a28]" aria-hidden="true">*</span>
+                            </label>
+                        </div>
+                        <p id="agreementError" class="hidden text-xs text-red-400 mt-1.5" role="alert"></p>
                     </div>
 
-                    <div class="flex items-center gap-2 text-xs text-zinc-300">
-                        <input type="checkbox" id="privacy-consent" name="consent" required class="w-4 h-4 shrink-0 accent-[#c85a28]">
-                        <label for="privacy-consent">Погоджуюсь з політикою конфіденційності <span class="text-[#c85a28]" aria-hidden="true">*</span></label>
-                    </div>
-
-                    <button type="submit" class="w-full min-h-[44px] py-3.5 bg-white hover:bg-zinc-200 text-[#141414] text-xs font-bold rounded-md transition duration-200">
-                        ЗАМОВИТИ КОНСУЛЬТАЦІЮ АРХІТЕКТОРА
+                    <!-- Кнопка відправки -->
+                    <button type="submit" class="w-full min-h-[46px] py-3.5 bg-[#c85a28] hover:bg-[#ae481b] active:scale-[0.99] text-white text-xs sm:text-sm font-bold tracking-wide rounded-md transition duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#1c1c1e]">
+                        НАДІСЛАТИ ЗАПИТ НА КОНСУЛЬТАЦІЮ
                     </button>
 
                     <div class="bg-[#242427] rounded-md p-3 text-[11px] text-zinc-300 leading-relaxed">
                         <p><strong>БЕЗКОШТОВНО • Зустріч в офісі або Zoom</strong></p>
-                        <p>Довідник: Середній термін проєктування: 6 тижнів • Гарантія фіксації ціни в договорі до початку робіт.</p>
+                        <p>Середній термін проєктування: 6 тижнів • Гарантія фіксації ціни в договорі до початку робіт.</p>
                     </div>
                 </form>
             </div>
@@ -553,5 +594,24 @@
         </div>
     </footer>
 
+<!-- Етап 11: Доступне модальне вікно успішної валідації -->
+    <div id="successModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="bg-[#1c1c1e] border border-[#333338] text-white rounded-2xl max-w-md w-full p-6 sm:p-8 shadow-2xl text-center flex flex-col items-center gap-4">
+            <div class="w-14 h-14 rounded-full bg-green-500/20 text-green-400 flex items-center justify-center text-2xl" aria-hidden="true">
+                <i class="fas fa-check"></i>
+            </div>
+            <h3 id="modalTitle" class="font-['Raleway',sans-serif] text-xl font-bold">Дякуємо!</h3>
+            <p class="text-sm text-zinc-300 leading-relaxed">
+                Форма успішно пройшла клієнтську валідацію. Демонстрація успішного надсилання.
+            </p>
+            <button type="button" id="closeModalBtn" class="mt-2 w-full sm:w-auto min-h-[44px] px-8 py-2.5 bg-[#c85a28] hover:bg-[#ae481b] text-white text-sm font-semibold rounded-md transition focus:outline-none focus-visible:ring-2 focus-visible:ring-white">
+                Закрити
+            </button>
+        </div>
+    </div>
+
+    <!-- Підключення клієнтської валідації (ЛР №9) -->
+    <script src="assets/js/validation.js"></script>
+   
 </body>
 </html>
