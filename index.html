@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="uk" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="only light">
+    <title>Новий простір — Архітектурне бюро повного циклу</title>
+
+    <!-- Google Fonts: Inter та Raleway -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Raleway:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <!-- Етап 3: Підключення Tailwind CSS через CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Користувацькі стилі -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-white text-[#141414] font-['Inter',sans-serif] antialiased selection:bg-[#c85a28] selection:text-white">
+
+    <!-- =====================================================================
+         ЕТАП 6: СЕМАНТИЧНИЙ HEADER З АДАПТИВНОЮ НАВІГАЦІЄЮ НА TAILWIND CSS
+         ===================================================================== -->
+    <header class="sticky top-0 z-50 bg-white border-b border-zinc-200 py-3">
+        <div class="max-w-[1160px] mx-auto px-4 sm:px-6 flex items-center justify-between gap-3">
+            <!-- Логотип зліва (фіксована ширина, щоб не розпирав екран на 320px) -->
+            <a href="#" class="flex items-center shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c85a28] rounded" aria-label="На головну — Архітектурне бюро Новий простір">
+                <img src="assets/icons/logo.svg" alt="Новий простір — архітектурне бюро" class="w-[135px] sm:w-[155px] h-auto max-h-8 object-contain object-left">
+            </a>
+
+            <!-- Прихований чекбокс (peer) для відкриття мобільного меню без JS -->
+            <input type="checkbox" id="mobile-menu-toggle" class="peer hidden" aria-hidden="true">
+
+            <!-- Кнопка гамбургер-меню (видима на мобільних і планшетах до 1024px) -->
+            <label for="mobile-menu-toggle" class="inline-flex lg:hidden items-center justify-center w-11 h-11 shrink-0 border border-zinc-300 rounded-md text-[#141414] hover:border-[#141414] transition cursor-pointer" aria-label="Відкрити мобільне меню">
+                <i class="fas fa-bars text-base" aria-hidden="true"></i>
+            </label>
+
+            <!-- Затемнення фону при відкритому мобільному меню -->
+            <label for="mobile-menu-toggle" class="hidden peer-checked:block lg:peer-checked:hidden fixed inset-0 bg-black/50 z-40" aria-hidden="true"></label>
+
+            <!-- Навігація та CTA (Виїзний Drawer на мобільних/планшетах | Горизонтальний рядок на lg:) -->
+            <div class="hidden peer-checked:flex lg:flex fixed lg:static top-0 right-0 w-[280px] sm:w-[320px] max-w-[85vw] lg:w-auto lg:max-w-none h-screen lg:h-auto bg-white lg:bg-transparent shadow-2xl lg:shadow-none p-6 lg:p-0 flex-col lg:flex-row lg:items-center lg:justify-between lg:flex-1 lg:ml-8 xl:ml-12 z-50 overflow-y-auto lg:overflow-visible">
+                
+                <!-- Верхня панель мобільного дровера з хрестиком -->
+                <div class="flex lg:hidden items-center justify-between pb-4 mb-5 border-b border-zinc-200">
+                    <span class="font-['Raleway',sans-serif] font-bold text-sm tracking-wider">НОВИЙ ПРОСТІР</span>
+                    <label for="mobile-menu-toggle" class="inline-flex items-center justify-center w-10 h-10 border border-zinc-200 rounded-md cursor-pointer" aria-label="Закрити мобільне меню">
+                        <i class="fas fa-times" aria-hidden="true"></i>
+                    </label>
+                </div>
+
+                <!-- Головна навігація (whitespace-nowrap запобігає переносу слів) -->
+                <nav aria-label="Головна навігація">
+                    <ul class="flex flex-col lg:flex-row lg:items-center gap-3.5 lg:gap-6 xl:gap-7 text-sm lg:text-[13px] font-medium text-zinc-800 whitespace-nowrap">
+                        <li><a href="#portfolio" class="block py-1 hover:text-[#c85a28] transition-colors">Портфоліо</a></li>
+                        <li><a href="#calculator" class="block py-1 hover:text-[#c85a28] transition-colors">Калькулятор</a></li>
+                        <li><a href="#process" class="block py-1 hover:text-[#c85a28] transition-colors">Як ми працюємо</a></li>
+                        <li><a href="#reviews" class="block py-1 hover:text-[#c85a28] transition-colors">Про бюро</a></li>
+                        <li><a href="#consultation" class="block py-1 hover:text-[#c85a28] transition-colors">Контакти</a></li>
+                    </ul>
+                </nav>
+
+                <!-- Блок телефону та кнопки CTA справа -->
+                <div class="mt-auto lg:mt-0 pt-6 lg:pt-0 border-t lg:border-t-0 border-zinc-200 flex flex-col lg:flex-row lg:items-center gap-3 lg:gap-4 shrink-0">
+                    <a href="tel:+380971234567" class="text-sm lg:text-xs font-medium text-zinc-600 hover:text-[#141414] text-center whitespace-nowrap transition-colors">
+                        <i class="fas fa-phone text-[#c85a28] mr-1" aria-hidden="true"></i>+38 (097) 123-45-67
+                    </a>
+                    <a href="#calculator" class="inline-flex items-center justify-center min-h-[44px] lg:min-h-[38px] px-5 py-2.5 bg-[#c85a28] hover:bg-[#ae481b] active:scale-[0.98] text-white text-xs font-semibold rounded-md whitespace-nowrap transition duration-200">
+                        Розрахувати
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- 1. HERO-СЕКЦІЯ -->
+        <section class="bg-[#141414] text-white py-10 sm:py-14 lg:py-20" aria-labelledby="hero-heading">
+            <div class="max-w-[1160px] mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+                <div class="lg:col-span-6">
+                    <span class="inline-block px-3 py-1.5 bg-[#242427] border border-[#333338] rounded text-[11px] sm:text-xs text-zinc-300 mb-4">
+                        Архітектурне бюро повного циклу
+                    </span>
+                    <h1 id="hero-heading" class="font-['Raleway',sans-serif] text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-bold leading-tight mb-4">
+                        Дизайн інтер'єру з прозорою ціною та реальним результатом
+                    </h1>
+                    <p class="text-sm sm:text-base text-zinc-400 mb-6 max-w-[48ch]">
+                        Створюємо простори без «намальованих» витрат: за фіксованим кошторисом, з 3D-візуалізацією та будівництвом.
+                    </p>
+
+                    <div class="flex flex-col items-start gap-2.5 mb-7">
+                        <a href="#calculator" class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 min-h-[46px] px-6 sm:px-8 py-3.5 bg-[#c85a28] hover:bg-[#ae481b] active:scale-[0.98] text-white text-xs sm:text-sm font-semibold tracking-wide rounded-md shadow-sm transition duration-300">
+                            <span>РОЗРАХУВАТИ ВАРТІСТЬ</span>
+                            <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                        </a>
+                        <p class="text-xs text-zinc-400">Безкоштовно • Розрахунок за 1 хвилину</p>
+                        <a href="#comparison" class="text-xs text-zinc-200 underline hover:text-[#c85a28] transition-colors">
+                            Дивитись приклад реалізації об'єкта в Києві →
+                        </a>
+                    </div>
+
+                    <ul class="inline-flex flex-wrap items-center gap-2.5 sm:gap-4 px-3.5 sm:px-4 py-2.5 bg-[#1c1c1e] border border-[#333338] rounded-md text-[11px] sm:text-xs text-zinc-200" aria-label="Ключові показники бюро">
+                        <li><strong>10+</strong> років досвіду</li>
+                        <li class="text-zinc-600" aria-hidden="true">|</li>
+                        <li><strong>120+</strong> об'єктів</li>
+                        <li class="text-zinc-600" aria-hidden="true">|</li>
+                        <li><strong>0%</strong> прихованих витрат</li>
+                    </ul>
+                </div>
+
+                <figure class="lg:col-span-6">
+                    <div class="min-h-[260px] sm:min-h-[380px] lg:min-h-[420px] bg-[#242427] border border-[#333338] rounded-xl p-6 sm:p-8 flex flex-col items-center justify-center text-center gap-2 text-zinc-400">
+                        <i class="fas fa-cube text-2xl text-[#c85a28] mb-1" aria-hidden="true"></i>
+                        <p class="text-sm text-white font-medium">Інтерактивна 3D-панорама реалізованого інтер'єру</p>
+                        <p class="text-xs text-zinc-400">Клікніть або перетягніть для огляду</p>
+                        <span class="text-xs text-zinc-300 mt-1">ЖК Новопечерські Липки • 140 м²</span>
+                    </div>
+                </figure>
+            </div>
+        </section>
+
+        <!-- 2. СЕКЦІЯ ПОРІВНЯННЯ ДО / ПІСЛЯ -->
+        <section class="py-12 md:py-16 lg:py-20 bg-white" id="comparison" aria-labelledby="comparison-heading">
+            <div class="max-w-[1160px] mx-auto px-4 sm:px-6">
+                <h2 id="comparison-heading" class="font-['Raleway',sans-serif] text-xl sm:text-2xl md:text-[28px] font-bold text-center mb-8">
+                    Реальний результат замість «намальованих» рендерів
+                </h2>
+
+                <figure class="relative max-w-[920px] mx-auto rounded-xl overflow-hidden shadow-lg">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 h-[320px] sm:h-[420px]">
+                        <div class="h-full overflow-hidden">
+                            <img src="assets/images/before.webp"
+                                 onerror="if(!this.dataset.t){this.dataset.t=1;this.src='assets/images/before.png';}else if(this.dataset.t==1){this.dataset.t=2;this.src='assets/images/before.jpg';}"
+                                 alt="Приміщення на етапі чорнового будівництва"
+                                 loading="lazy"
+                                 class="w-full h-full object-cover">
+                        </div>
+                        <div class="h-full overflow-hidden">
+                            <img src="assets/images/after.webp"
+                                 onerror="if(!this.dataset.t){this.dataset.t=1;this.src='assets/images/after.png';}else if(this.dataset.t==1){this.dataset.t=2;this.src='assets/images/after.jpg';}"
+                                 alt="Готовий реалізований інтер'єр з панорамними вікнами"
+                                 loading="lazy"
+                                 class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                    <button type="button" class="slider-handle" role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-label="Повзунок порівняння фото до та після ремонту">
+                        <i class="fas fa-arrows-left-right" aria-hidden="true"></i>
+                        <small>До / Після</small>
+                    </button>
+                </figure>
+
+                <div class="flex justify-center mt-8">
+                    <a href="#portfolio" class="w-full sm:w-auto inline-flex items-center justify-center min-h-[44px] px-5 sm:px-6 py-3 bg-[#141414] hover:bg-zinc-800 text-white text-[11px] sm:text-xs font-semibold rounded-md text-center transition duration-200">
+                        ЧИТАТИ ПОВНИЙ РОЗБІР ЦЬОГО КЕЙСУ: ІДЕЯ → БУДІВНИЦТВО → ФІНАЛ
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. СЕКЦІЯ КАЛЬКУЛЯТОРА БЮДЖЕТУ -->
+        <section class="py-12 md:py-16 lg:py-20 bg-white" id="calculator" aria-labelledby="calculator-heading">
+            <div class="max-w-[1160px] mx-auto px-4 sm:px-6">
+                <h2 id="calculator-heading" class="font-['Raleway',sans-serif] text-xl sm:text-2xl md:text-[28px] font-bold text-center mb-2">
+                    Розрахуйте орієнтовний бюджет проєкту
+                </h2>
+                <p class="text-xs text-zinc-500 text-center mb-8">Крок 1 з 3 • Це займе не більше хвилини</p>
+
+                <form class="max-w-[720px] mx-auto p-4 sm:p-8 md:p-9 bg-white border border-zinc-200 rounded-2xl shadow-sm flex flex-col gap-6" action="#" method="post">
+                    <div class="max-w-[240px] mx-auto w-full text-center">
+                        <label for="room-area" class="block text-xs font-semibold mb-2">Площа приміщення</label>
+                        <input type="text" id="room-area" name="area" value="85 м²" class="w-full px-3.5 py-2.5 border border-zinc-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-[#c85a28]">
+                    </div>
+
+                    <fieldset class="border-0">
+                        <legend class="block text-xs font-semibold text-center mb-2.5">Тип об'єкта</legend>
+                        <div class="flex flex-wrap justify-center gap-2" role="group" aria-label="Вибір типу об'єкта">
+                            <button type="button" class="min-h-[44px] sm:min-h-[38px] px-4 py-2 rounded-md border border-[#141414] bg-[#141414] text-white text-xs font-medium transition" aria-pressed="true">Новобудова</button>
+                            <button type="button" class="min-h-[44px] sm:min-h-[38px] px-4 py-2 rounded-md border border-zinc-300 bg-white text-[#141414] hover:border-[#141414] text-xs font-medium transition" aria-pressed="false">Вторинне житло</button>
+                            <button type="button" class="min-h-[44px] sm:min-h-[38px] px-4 py-2 rounded-md border border-zinc-300 bg-white text-[#141414] hover:border-[#141414] text-xs font-medium transition" aria-pressed="false">Комерційне приміщення</button>
+                        </div>
+                    </fieldset>
+
+                    <aside class="bg-blue-50 border border-blue-200 rounded-lg p-4 sm:p-5 text-xs text-blue-900 max-w-[480px] mx-auto flex flex-col gap-2" aria-label="Інформація про обраний тип об'єкта">
+                        <p><strong>НОВОБУДОВА:</strong> об'єкти з нуля без демонтажу стін.</p>
+                        <p>До складу входить перепланування, інженерні мережі та повна 3D-візуалізація.</p>
+                        <div class="flex flex-wrap gap-2 mt-1">
+                            <a href="#portfolio" class="inline-flex items-center justify-center min-h-[36px] px-3 py-2 bg-[#141414] text-white text-[11px] font-semibold rounded hover:bg-zinc-800 transition">ДИВИТИСЬ ПРИКЛАД ПРОЄКТУ</a>
+                            <a href="#consultation" class="inline-flex items-center justify-center min-h-[36px] px-3 py-2 bg-white border border-zinc-300 text-[#141414] text-[11px] font-semibold rounded hover:border-[#141414] transition">ЗАДАТИ ПИТАННЯ АРХІТЕКТОРУ</a>
+                        </div>
+                    </aside>
+
+                    <fieldset class="border-0">
+                        <legend class="block text-xs font-semibold text-center mb-2.5">Пакет послуг</legend>
+                        <div class="flex flex-wrap justify-center gap-2" role="group" aria-label="Вибір пакету послуг">
+                            <button type="button" class="min-h-[44px] sm:min-h-[38px] px-4 py-2 rounded-md border border-zinc-300 bg-white text-[#141414] hover:border-[#141414] text-xs font-medium transition" aria-pressed="false">Базовий (креслення)</button>
+                            <button type="button" class="min-h-[44px] sm:min-h-[38px] px-4 py-2 rounded-md border border-[#141414] bg-[#141414] text-white text-xs font-medium transition" aria-pressed="true">• Повний дизайн-проєкт</button>
+                            <button type="button" class="min-h-[44px] sm:min-h-[38px] px-4 py-2 rounded-md border border-zinc-300 bg-white text-[#141414] hover:border-[#141414] text-xs font-medium transition" aria-pressed="false">Під ключ з авторським наглядом</button>
+                        </div>
+                    </fieldset>
+
+                    <div class="bg-[#e6f4ea] text-[#1e4620] p-4 sm:p-5 rounded-lg flex flex-col gap-1">
+                        <span class="text-[10px] font-bold tracking-wider">РЕЗУЛЬТАТ РОЗРАХУНКУ</span>
+                        <output class="text-base sm:text-xl font-bold" aria-live="polite">Орієнтовний діапазон: $15 000 – $18 000</output>
+                    </div>
+
+                    <div>
+                        <label for="calc-email" class="block text-xs font-semibold mb-2">Отримати детальний розрахунок на пошту</label>
+                        <div class="flex flex-col sm:flex-row gap-2.5 max-w-[480px]">
+                            <input type="email" id="calc-email" name="email" placeholder="name@example.com" required class="w-full px-3.5 py-2.5 border border-zinc-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-[#c85a28]">
+                            <button type="submit" class="w-full sm:w-auto shrink-0 inline-flex items-center justify-center min-h-[44px] px-5 py-2.5 bg-[#141414] hover:bg-zinc-800 text-white text-xs font-semibold rounded-md transition">
+                                Отримати детальний кошторис
+                            </button>
+                        </div>
+                        <p class="mt-3 p-3 bg-[#e6f4ea] text-[#1e4620] rounded-md text-xs flex items-start sm:items-center gap-2" role="status">
+                            <i class="fas fa-check-circle shrink-0 mt-0.5 sm:mt-0" aria-hidden="true"></i>
+                            <span>Орієнтовний термін — 6 тижнів • <strong>Детальний кошторис по етапах успішно надіслано на вашу пошту!</strong></span>
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- =====================================================================
+             ЕТАПИ 8, 9, 17: ПОРТФОЛІО ОБ'ЄКТІВ (6 КАРТОК ІЗ ТОЧНИМИ ФОТО ПІД ОПИС)
+             ===================================================================== -->
+        <section class="py-12 md:py-16 lg:py-20 bg-white" id="portfolio" aria-labelledby="portfolio-heading">
+            <div class="max-w-[1160px] mx-auto px-4 sm:px-6">
+                <h2 id="portfolio-heading" class="font-['Raleway',sans-serif] text-xl sm:text-2xl md:text-[28px] font-bold text-center mb-6">
+                    Портфоліо об'єктів
+                </h2>
+
+                <ul class="flex flex-wrap justify-center gap-2 mb-8" aria-label="Фільтр проєктів">
+                    <li><button type="button" class="min-h-[40px] px-3.5 py-2 rounded-md bg-[#141414] text-white text-xs font-medium transition" aria-pressed="true">Усі</button></li>
+                    <li><button type="button" class="min-h-[40px] px-3.5 py-2 rounded-md border border-zinc-300 bg-white hover:border-[#141414] text-xs font-medium transition" aria-pressed="false">Житлові</button></li>
+                    <li><button type="button" class="min-h-[40px] px-3.5 py-2 rounded-md border border-zinc-300 bg-white hover:border-[#141414] text-xs font-medium transition" aria-pressed="false">Комерційні</button></li>
+                    <li><button type="button" class="min-h-[40px] px-3.5 py-2 rounded-md border border-zinc-300 bg-white hover:border-[#141414] text-xs font-medium transition" aria-pressed="false">До 100 м²</button></li>
+                    <li><button type="button" class="min-h-[40px] px-3.5 py-2 rounded-md border border-zinc-300 bg-white hover:border-[#141414] text-xs font-medium transition" aria-pressed="false">100–250 м²</button></li>
+                    <li><button type="button" class="min-h-[40px] px-3.5 py-2 rounded-md border border-zinc-300 bg-white hover:border-[#141414] text-xs font-medium transition" aria-pressed="false">250+ м²</button></li>
+                </ul>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Картка 1: Особняк на березі озера (Твій локальний файл portfolio-1) -->
+                    <article class="group bg-white border border-zinc-200 rounded-xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300 flex flex-col">
+                        <img src="assets/images/portfolio-1.webp"
+                             onerror="if(!this.dataset.t){this.dataset.t=1;this.src='assets/images/portfolio-1.png';}else if(this.dataset.t==1){this.dataset.t=2;this.src='assets/images/portfolio-1.jpg';}"
+                             alt="Сучасний двоповерховий особняк на березі озера"
+                             loading="lazy"
+                             class="w-full h-56 object-cover">
+                        <div class="p-5 sm:p-6 flex flex-col flex-grow gap-2">
+                            <div class="flex justify-between text-[11px] font-bold tracking-wider">
+                                <span class="text-[#c85a28]">ЖИТЛО</span>
+                                <span class="text-zinc-500">240 м²</span>
+                            </div>
+                            <h3 class="font-['Raleway',sans-serif] text-lg font-bold">Особняк на березі озера</h3>
+                            <p class="text-sm text-zinc-600 mb-2">Комфортне житло з панорамним склінням та інтеграцією у природний ландшафт.</p>
+                            <a href="#consultation" class="mt-auto pt-2 inline-flex items-center justify-between text-xs font-semibold text-[#141414] group-hover:text-[#c85a28] transition-colors">
+                                <span>Деталі проєкту</span>
+                                <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Картка 2: Сучасний коворкінг у стилі лофт (Твій локальний файл portfolio-2) -->
+                    <article class="group bg-white border border-zinc-200 rounded-xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300 flex flex-col">
+                        <img src="assets/images/portfolio-2.webp"
+                             onerror="if(!this.dataset.t){this.dataset.t=1;this.src='assets/images/portfolio-2.png';}else if(this.dataset.t==1){this.dataset.t=2;this.src='assets/images/portfolio-2.jpg';}"
+                             alt="Інтер'єр сучасного коворкінгу в стилі лофт"
+                             loading="lazy"
+                             class="w-full h-56 object-cover">
+                        <div class="p-5 sm:p-6 flex flex-col flex-grow gap-2">
+                            <div class="flex justify-between text-[11px] font-bold tracking-wider">
+                                <span class="text-[#c85a28]">КОМЕРЦІЙНА НЕРУХОМІСТЬ</span>
+                                <span class="text-zinc-500">450 м²</span>
+                            </div>
+                            <h3 class="font-['Raleway',sans-serif] text-lg font-bold">Сучасний коворкінг у стилі лофт</h3>
+                            <p class="text-sm text-zinc-600 mb-2">Простір для IT-компанії з зонами для брейнштормінгу, мітинг-румами та лаунжем.</p>
+                            <a href="#consultation" class="mt-auto pt-2 inline-flex items-center justify-between text-xs font-semibold text-[#141414] group-hover:text-[#c85a28] transition-colors">
+                                <span>Деталі проєкту</span>
+                                <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Картка 3: Пентхаус із видовою терасою (Інтер'єр з панорамним виходом на терасу, бетоном і шпоном горіха) -->
+                    <article class="group bg-white border border-zinc-200 rounded-xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300 flex flex-col">
+                        <img src="assets/images/after.webp"
+                             onerror="if(!this.dataset.t){this.dataset.t=1;this.src='assets/images/after.png';}else if(this.dataset.t==1){this.dataset.t=2;this.src='assets/images/after.jpg';}"
+                             alt="Пентхаус із панорамним склінням, видовою терасою, бетоном та дерев'яними панелями"
+                             loading="lazy"
+                             class="w-full h-56 object-cover">
+                        <div class="p-5 sm:p-6 flex flex-col flex-grow gap-2">
+                            <div class="flex justify-between text-[11px] font-bold tracking-wider">
+                                <span class="text-[#c85a28]">ЖИТЛО</span>
+                                <span class="text-zinc-500">140 м²</span>
+                            </div>
+                            <h3 class="font-['Raleway',sans-serif] text-lg font-bold">Пентхаус із видовою терасою</h3>
+                            <p class="text-sm text-zinc-600 mb-2">Поєднання натурального шпону горіха, архітектурного бетону та панорамної тераси.</p>
+                            <a href="#consultation" class="mt-auto pt-2 inline-flex items-center justify-between text-xs font-semibold text-[#141414] group-hover:text-[#c85a28] transition-colors">
+                                <span>Деталі проєкту</span>
+                                <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Картка 4: Резиденція в сосновому лісі (Сучасний будинок зі склом і деревом прямо серед хвойного лісу) -->
+                    <article class="group bg-white border border-zinc-200 rounded-xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300 flex flex-col">
+                        <img src="https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&w=900&q=80"
+                             alt="Сучасна приватна резиденція з великими вікнами серед густого соснового лісу"
+                             loading="lazy"
+                             class="w-full h-56 object-cover">
+                        <div class="p-5 sm:p-6 flex flex-col flex-grow gap-2">
+                            <div class="flex justify-between text-[11px] font-bold tracking-wider">
+                                <span class="text-[#c85a28]">ЖИТЛО</span>
+                                <span class="text-zinc-500">310 м²</span>
+                            </div>
+                            <h3 class="font-['Raleway',sans-serif] text-lg font-bold">Резиденція в сосновому лісі</h3>
+                            <p class="text-sm text-zinc-600 mb-2">Енергоефективний будинок у хвойному лісі з другим світлом та камінною залою.</p>
+                            <a href="#consultation" class="mt-auto pt-2 inline-flex items-center justify-between text-xs font-semibold text-[#141414] group-hover:text-[#c85a28] transition-colors">
+                                <span>Деталі проєкту</span>
+                                <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Картка 5: Шоурум дизайнерських меблів та інтер'єру -->
+                    <article class="group bg-white border border-zinc-200 rounded-xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300 flex flex-col">
+                        <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=900&q=80"
+                             alt="Просторий шоурум дизайнерських меблів та сучасного освітлення"
+                             loading="lazy"
+                             class="w-full h-56 object-cover">
+                        <div class="p-5 sm:p-6 flex flex-col flex-grow gap-2">
+                            <div class="flex justify-between text-[11px] font-bold tracking-wider">
+                                <span class="text-[#c85a28]">КОМЕРЦІЙНА НЕРУХОМІСТЬ</span>
+                                <span class="text-zinc-500">280 м²</span>
+                            </div>
+                            <h3 class="font-['Raleway',sans-serif] text-lg font-bold">Шоурум сучасних меблів та світла</h3>
+                            <p class="text-sm text-zinc-600 mb-2">Відкритий експозиційний простір із панорамним склінням, шпонованими панелями та м'якими лаунж-зонами.</p>
+                            <a href="#consultation" class="mt-auto pt-2 inline-flex items-center justify-between text-xs font-semibold text-[#141414] group-hover:text-[#c85a28] transition-colors">
+                                <span>Деталі проєкту</span>
+                                <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Картка 6: Апартаменти преміум-класу у Львові -->
+                    <article class="group bg-white border border-zinc-200 rounded-xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300 flex flex-col">
+                        <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=900&q=80"
+                             alt="Сучасний інтер'єр просторих апартаментів у Львові в теплих тонах дерева та каменю"
+                             loading="lazy"
+                             class="w-full h-56 object-cover">
+                        <div class="p-5 sm:p-6 flex flex-col flex-grow gap-2">
+                            <div class="flex justify-between text-[11px] font-bold tracking-wider">
+                                <span class="text-[#c85a28]">ЖИТЛО</span>
+                                <span class="text-zinc-500">115 м²</span>
+                            </div>
+                            <h3 class="font-['Raleway',sans-serif] text-lg font-bold">Апартаменти з панорамою у Львові</h3>
+                            <p class="text-sm text-zinc-600 mb-2">Авторський інтер'єр із натурального каменю, теплого дуба та сценаріями прихованого освітлення.</p>
+                            <a href="#consultation" class="mt-auto pt-2 inline-flex items-center justify-between text-xs font-semibold text-[#141414] group-hover:text-[#c85a28] transition-colors">
+                                <span>Деталі проєкту</span>
+                                <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </article>
+                    </article>
+                </div>
+
+                <div class="flex justify-center mt-8">
+                    <button type="button" class="w-full sm:w-auto min-h-[44px] px-6 py-3 border border-zinc-300 hover:border-[#141414] bg-white text-[#141414] text-xs font-semibold rounded-md transition duration-200">
+                        Переглянути ще 24 реалізовані проєкти
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. СЕКЦІЯ ПЕРЕВАГ -->
+        <section class="py-12 md:py-16 lg:py-20 bg-white" id="process" aria-labelledby="features-heading">
+            <div class="max-w-[1160px] mx-auto px-4 sm:px-6">
+                <h2 id="features-heading" class="font-['Raleway',sans-serif] text-xl sm:text-2xl md:text-[28px] font-bold text-center mb-8">
+                    Фіксований кошторис та контроль на кожному етапі
+                </h2>
+
+                <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                    <li class="p-6 bg-white border border-zinc-300 rounded-xl hover:shadow-md transition duration-300 flex flex-col gap-2.5">
+                        <img src="assets/icons/estimate.svg" alt="" loading="lazy" class="w-6 h-6 object-contain" width="24" height="24">
+                        <h3 class="font-['Raleway',sans-serif] text-base font-bold">Прозорий кошторис</h3>
+                        <p class="text-xs text-zinc-600">Фіксуємо вартість у договорі до початку робіт.</p>
+                    </li>
+                    <li class="p-6 bg-white border border-zinc-300 rounded-xl hover:shadow-md transition duration-300 flex flex-col gap-2.5">
+                        <img src="assets/icons/check.svg" alt="" loading="lazy" class="w-6 h-6 object-contain" width="24" height="24">
+                        <h3 class="font-['Raleway',sans-serif] text-base font-bold">100% реалізація</h3>
+                        <p class="text-xs text-zinc-600">Відповідність фінального результату 3D-візуалізаціям.</p>
+                    </li>
+                    <li class="p-6 bg-white border border-zinc-300 rounded-xl hover:shadow-md transition duration-300 flex flex-col gap-2.5">
+                        <img src="assets/icons/eye.svg" alt="" loading="lazy" class="w-6 h-6 object-contain" width="24" height="24">
+                        <h3 class="font-['Raleway',sans-serif] text-base font-bold">Авторський нагляд</h3>
+                        <p class="text-xs text-zinc-600">Повний супровід будівництва та закупівлі матеріалів.</p>
+                    </li>
+                    <li class="p-6 bg-white border border-zinc-300 rounded-xl hover:shadow-md transition duration-300 flex flex-col gap-2.5">
+                        <img src="assets/icons/scale.svg" alt="" loading="lazy" class="w-6 h-6 object-contain" width="24" height="24">
+                        <h3 class="font-['Raleway',sans-serif] text-base font-bold">Досвід та масштаб</h3>
+                        <p class="text-xs text-zinc-600">Проєктуємо об'єкти від 60 до 1500+ м².</p>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 6. СЕКЦІЯ ВІДГУКІВ -->
+        <section class="py-12 md:py-16 lg:py-20 bg-zinc-100" id="reviews" aria-labelledby="reviews-heading">
+            <div class="max-w-[1160px] mx-auto px-4 sm:px-6">
+                <h2 id="reviews-heading" class="font-['Raleway',sans-serif] text-xl sm:text-2xl md:text-[28px] font-bold text-center mb-8">
+                    Що кажуть наші замовники та партнери
+                </h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <article class="bg-white p-6 sm:p-7 rounded-xl shadow-sm flex flex-col gap-3.5">
+                        <h3 class="self-start text-[10px] font-bold bg-zinc-100 text-zinc-600 px-2.5 py-1 rounded">
+                            ВІДГУК • Приватний будинок
+                        </h3>
+                        <blockquote class="text-sm font-medium leading-relaxed">
+                            <p>«Кошторис не змінився ні на гривню від початкового розрахунку. Фото повністю відповідають рендерам!»</p>
+                        </blockquote>
+                        <footer>
+                            <cite class="not-italic text-xs text-zinc-500">— Олена М., власниця котеджу 180 м²</cite>
+                        </footer>
+                    </article>
+
+                    <article class="bg-white p-6 sm:p-7 rounded-xl shadow-sm flex flex-col gap-3.5">
+                        <h3 class="self-start text-[10px] font-bold bg-zinc-100 text-zinc-600 px-2.5 py-1 rounded">
+                            ВІДГУК • Комерційний об'єкт
+                        </h3>
+                        <blockquote class="text-sm font-medium leading-relaxed">
+                            <p>«Проєкт офісу 1200 м² здали вчасно з вичерпним комплектом робочої документації для підрядників.»</p>
+                        </blockquote>
+                        <footer>
+                            <cite class="not-italic text-xs text-zinc-500">— Дмитро К., CEO девелопера</cite>
+                        </footer>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. СЕКЦІЯ КОНСУЛЬТАЦІЇ -->
+        <section class="py-12 md:py-16 lg:py-20 bg-[#141414] text-white" id="consultation" aria-labelledby="consultation-heading">
+            <div class="max-w-[1160px] mx-auto px-4 sm:px-6">
+                <h2 id="consultation-heading" class="font-['Raleway',sans-serif] text-xl sm:text-2xl md:text-[28px] font-bold text-center mb-2">
+                    Отримати безкоштовну консультацію архітектора
+                </h2>
+                <p class="text-xs text-zinc-400 text-center mb-8">Обговоримо ваш об'єкт, терміни реалізації та відповімо на всі питання.</p>
+
+                <form class="max-w-[480px] mx-auto bg-[#1c1c1e] border border-[#333338] p-5 sm:p-8 rounded-xl flex flex-col gap-4" action="#" method="post">
+                    <div>
+                        <label for="client-name" class="block text-xs font-semibold mb-1.5">Ім'я <span class="text-[#c85a28]" aria-hidden="true">*</span></label>
+                        <input type="text" id="client-name" name="name" placeholder="Сергій" required class="w-full px-3.5 py-2.5 bg-[#242427] border border-[#333338] rounded-md text-sm text-white focus:outline-none focus:ring-2 focus:ring-[#c85a28]">
+                    </div>
+
+                    <div>
+                        <label for="client-phone" class="block text-xs font-semibold mb-1.5">Телефон <span class="text-[#c85a28]" aria-hidden="true">*</span></label>
+                        <input type="tel" id="client-phone" name="phone" placeholder="+380 (97) 123-45-67" required aria-describedby="phone-hint" class="w-full px-3.5 py-2.5 bg-[#242427] border border-[#333338] rounded-md text-sm text-white focus:outline-none focus:ring-2 focus:ring-[#c85a28]">
+                        <span id="phone-hint" class="inline-block text-[10px] text-zinc-400 bg-[#242427] px-1.5 py-0.5 rounded mt-1.5">Формат: +380 XX XXX XX XX</span>
+                    </div>
+
+                    <div>
+                        <label for="client-email" class="block text-xs font-semibold mb-1.5">Email (опціонально)</label>
+                        <input type="email" id="client-email" name="email" placeholder="name@example.com" class="w-full px-3.5 py-2.5 bg-[#242427] border border-[#333338] rounded-md text-sm text-white focus:outline-none focus:ring-2 focus:ring-[#c85a28]">
+                    </div>
+
+                    <div class="flex items-center gap-2 text-xs text-zinc-300">
+                        <input type="checkbox" id="privacy-consent" name="consent" required class="w-4 h-4 shrink-0 accent-[#c85a28]">
+                        <label for="privacy-consent">Погоджуюсь з політикою конфіденційності <span class="text-[#c85a28]" aria-hidden="true">*</span></label>
+                    </div>
+
+                    <button type="submit" class="w-full min-h-[44px] py-3.5 bg-white hover:bg-zinc-200 text-[#141414] text-xs font-bold rounded-md transition duration-200">
+                        ЗАМОВИТИ КОНСУЛЬТАЦІЮ АРХІТЕКТОРА
+                    </button>
+
+                    <div class="bg-[#242427] rounded-md p-3 text-[11px] text-zinc-300 leading-relaxed">
+                        <p><strong>БЕЗКОШТОВНО • Зустріч в офісі або Zoom</strong></p>
+                        <p>Довідник: Середній термін проєктування: 6 тижнів • Гарантія фіксації ціни в договорі до початку робіт.</p>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 8. ПІДВАЛ САЙТУ (FOOTER) -->
+    <footer class="bg-[#0f0f10] text-zinc-400 pt-14 pb-8 text-xs">
+        <div class="max-w-[1160px] mx-auto px-4 sm:px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
+            <div class="flex flex-col items-start gap-3">
+                <a href="#" class="font-['Raleway',sans-serif] text-white text-sm font-bold tracking-wider">НОВИЙ ПРОСТІР</a>
+                <p class="text-zinc-400 leading-relaxed">Дизайн інтер'єру та архітектурне проєктування з фіксованим бюджетом.</p>
+                <a href="https://t.me/" target="_blank" rel="noopener noreferrer" class="mt-1 inline-flex items-center gap-2 min-h-[40px] px-4 py-2 bg-[#242427] hover:bg-[#c85a28] text-white text-xs font-semibold rounded-md transition duration-200">
+                    <i class="fab fa-telegram-plane text-sm" aria-hidden="true"></i>
+                    <span>Написати в Telegram</span>
+                </a>
+            </div>
+
+            <nav aria-label="Навігація у підвалі">
+                <h2 class="font-['Raleway',sans-serif] text-white text-sm font-bold mb-3">Навігація</h2>
+                <ul class="flex flex-col gap-2">
+                    <li><a href="#portfolio" class="hover:text-white transition-colors">Портфоліо</a></li>
+                    <li><a href="#calculator" class="hover:text-white transition-colors">Калькулятор</a></li>
+                    <li><a href="#process" class="hover:text-white transition-colors">Як ми працюємо</a></li>
+                    <li><a href="#reviews" class="hover:text-white transition-colors">Про бюро</a></li>
+                </ul>
+            </nav>
+
+            <div>
+                <h2 class="font-['Raleway',sans-serif] text-white text-sm font-bold mb-3">Контакти</h2>
+                <address class="not-italic flex flex-col gap-2 mb-3">
+                    <p><a href="tel:+380971234567" class="hover:text-white transition-colors">+38 (097) 123-45-67</a></p>
+                    <p><a href="mailto:info@novyiprostir.ua" class="hover:text-white transition-colors">info@novyiprostir.ua</a></p>
+                    <p>м. Київ / м. Львів</p>
+                </address>
+                <ul class="flex gap-2.5" aria-label="Соціальні мережі">
+                    <li>
+                        <a href="#" aria-label="Instagram" class="w-9 h-9 rounded-full bg-[#242427] hover:bg-[#c85a28] text-white inline-flex items-center justify-center transition duration-200">
+                            <i class="fab fa-instagram" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" aria-label="Telegram" class="w-9 h-9 rounded-full bg-[#242427] hover:bg-[#c85a28] text-white inline-flex items-center justify-center transition duration-200">
+                            <i class="fab fa-telegram-plane" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" aria-label="Behance" class="w-9 h-9 rounded-full bg-[#242427] hover:bg-[#c85a28] text-white inline-flex items-center justify-center transition duration-200">
+                            <i class="fab fa-behance" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div>
+                <h2 class="font-['Raleway',sans-serif] text-white text-sm font-bold mb-3">Документи</h2>
+                <ul class="flex flex-col gap-2">
+                    <li><a href="#" class="hover:text-white transition-colors">Типовий договір підряду</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Політика конфіденційності</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Публічна оферта</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Умови використання</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="max-w-[1160px] mx-auto px-4 sm:px-6 border-t border-[#242427] pt-5 text-center text-zinc-400">
+            <p>© 2026 Архітектурне бюро «Новий простір». Всі права захищені.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
